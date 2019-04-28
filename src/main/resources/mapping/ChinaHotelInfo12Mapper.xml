@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlframe.xhjq.dao.xhfjqData.ChinaHotelInfo12Dao">
+
+	<!-- 国内酒店入住信息客流量(12月份，除浙江) -->
+	<select id="countCustomer" resultType="java.lang.Integer">
+        SELECT SUM(peo_num) AS '客流量' FROM china_hotel_info12
+    </select>
+
+    <!-- 国内各省份酒店入住信息TOP5客流量(12月份，除浙江) -->
+	<select id="countCustomerByTag" resultType="java.util.Map">
+        SELECT tag,SUM(peo_num) AS '客流量' FROM china_hotel_info12 GROUP BY tag ORDER BY peo_num DESC LIMIT 5
+    </select>
+
+
+</mapper>

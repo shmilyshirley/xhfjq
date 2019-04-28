@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlframe.xhjq.dao.NodeDao">
+    <!-- 获取最近那个时间节点的节点信息 -->
+	<select id="getNodeInfo" resultType="java.lang.String">
+        SELECT node_info FROM node ORDER BY datetime DESC LIMIT 1
+    </select>
+
+    <select id="getMayNodeInfo" resultType="java.lang.String">
+        SELECT node_info FROM node WHERE id = 55555
+    </select>
+
+    <select id="getAprilNodeInfo" resultType="java.lang.String">
+        SELECT node_info FROM node WHERE id = 4444
+    </select>
+    <select id="getMonthNode" parameterType="integer" resultType="java.lang.String">
+        SELECT node_info FROM node WHERE id = #{month}
+    </select>
+</mapper>

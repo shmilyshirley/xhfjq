@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlframe.xhjq.dao.API.EventsDao">
+
+	<select id="getLocations" resultType="com.hlframe.xhjq.domain.API.Locations" parameterType="int">
+        SELECT id,location,jingdu,weidu,fields1 FROM locations WHERE fields1 = #{fields1}
+    </select>
+
+    <select id="getEvent" resultType="com.hlframe.xhjq.domain.API.Event">
+        SELECT eventTime,address,eventType,status FROM event
+    </select>
+
+    <insert id="insertTblDepthHis" parameterType="java.util.List">
+        INSERT INTO `hualian_db`.`tbl_depth_his`
+        (
+            `id`,
+            `boatNo`,
+            `timeStampStr`,
+            `timeStamp`,
+            `depth`,
+            `weidu`,
+            `jingdu`
+        )
+         VALUES
+         <foreach collection="list" item="item" index="index" separator=",">
+             (
+              #{item.id,jdbcType=VARCHAR},
+              #{item.boatNo,jdbcType=VARCHAR},
+              #{item.timeStampStr,jdbcType=VARCHAR},
+              #{item.timeStamp,jdbcType=VARCHAR},
+              #{item.depth,jdbcType=DOUBLE},
+              #{item.weidu,jdbcType=DOUBLE},
+              #{item.jingdu,jdbcType=DOUBLE}
+             )
+         </foreach>
+    </insert>
+
+    <select id="getLixianDepthHis" resultType="com.hlframe.xhjq.domain.API.TblDepthHis">
+        SELECT * FROM `hualian_db`.`tbl_depth_his`
+    </select>
+</mapper>

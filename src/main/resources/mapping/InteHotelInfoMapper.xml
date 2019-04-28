@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlframe.xhjq.dao.xhfjqData.InteHotelInfoDao">
+
+	<!-- 国际酒店入住信息客流量(1-11月份) -->
+	<select id="countCustomer" resultType="java.lang.Integer">
+        SELECT SUM(peo_num) AS '客流量' FROM inte_hotel_info
+    </select>
+
+</mapper>

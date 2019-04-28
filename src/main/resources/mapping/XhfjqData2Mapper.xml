@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlframe.xhjq.dao.xhfjqData.XhfjqData2Dao">
+
+    <resultMap id="XhfjqData2BaseMap" type="com.hlframe.xhjq.domain.xhfjqData.XhfjqData2">
+        <result column="serial_no" property="serial_no" jdbcType="VARCHAR"/>
+        <result column="hksx" property="hksx" jdbcType="VARCHAR"/>
+        <result column="manage_name" property="manage_name" jdbcType="VARCHAR"/>
+        <result column="checkout_time" property="checkout_time" jdbcType="TIMESTAMP"/>
+        <result column="born_year" property="born_year" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="checkin_time" property="checkin_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 通过check_in的时间查询数据 -->
+    <select id="selectByDate" parameterType="java.lang.String" resultMap="XhfjqData2BaseMap">
+        SELECT * FROM xhfjq_data2
+        WHERE checkin_time LIKE CONCAT('%',#{checkin_time},'%')
+    </select>
+
+    <!-- 通过date查找所有记录 -->
+    <select id="selectXhfjqData2BySerial" parameterType="java.lang.String" resultMap="XhfjqData2BaseMap">
+        SELECT * FROM xhfjq_data2
+        WHERE serial_no = #{serial_no}
+    </select>
+
+    <!-- 查询所有数据 -->
+	<select id="selectAll" resultMap="XhfjqData2BaseMap">
+		SELECT * FROM xhfjq_data2
+	</select>
+
+    <!-- 插入数据到xhfjq_data2表中 -->
+    <insert id="insert">
+		INSERT INTO xhfjq_data2(
+			serial_no,
+			hksx,
+			manage_name,
+			checkout_time,
+			born_year,
+			gender,
+			checkin_time
+		) VALUES (
+			#{serial_no},
+			#{hksx},
+			#{manage_name},
+			#{checkout_time},
+			#{born_year},
+			#{gender},
+			#{checkin_time}
+		)
+	</insert>
+
+    <!-- 更新数据到xhfjq_data2表中 -->
+    <update id="update">
+		UPDATE xhfjq_data2 SET
+			/*serial_no = #{serial_no},*/
+			hksx = #{hksx},
+			manage_name = #{manage_name},
+			checkout_time = #{checkout_time},
+			born_year = #{born_year},
+			gender = #{gender},
+			checkin_time = #{checkin_time}
+		WHERE serial_no = #{serial_no}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM xhfjq_data2
+		WHERE serial_no = #{serial_no}
+	</update>
+</mapper>
