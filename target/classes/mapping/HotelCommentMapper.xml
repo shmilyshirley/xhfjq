@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlframe.xhjq.dao.xhfjqData.HotelCommentDao">
+
+    <resultMap id="HotelCommentBaseMap" type="com.hlframe.xhjq.domain.xhfjqData.HotelComment">
+        <result column="hotel_id" property="hotelId" jdbcType="VARCHAR"/>
+        <result column="hotel_type" property="hotelType" jdbcType="VARCHAR"/>
+        <result column="hotel_name" property="hotelName" jdbcType="VARCHAR"/>
+        <result column="hotel_company" property="hotelCompany" jdbcType="VARCHAR"/>
+        <result column="police" property="police" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="room_num" property="roomNum" jdbcType="INTEGER"/>
+        <result column="bed_num" property="bedNum" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="telephone" property="telephone" jdbcType="VARCHAR"/>
+        <result column="hotel_credit_rate" property="hotelCreditRate" jdbcType="DOUBLE"/>
+        <result column="food_review_rate" property="foodReviewRate" jdbcType="DOUBLE"/>
+        <result column="price_review_rate" property="priceReviewRate" jdbcType="DOUBLE"/>
+        <result column="server_review_rate" property="serverReviewRate" jdbcType="DOUBLE"/>
+        <result column="health_review_rate" property="healthReviewRate" jdbcType="DOUBLE"/>
+        <result column="device_review_rate" property="deviceReviewRate" jdbcType="DOUBLE"/>
+        <result column="traffic_review_rate" property="trafficReviewRate" jdbcType="DOUBLE"/>
+        <result column="locate" property="locate" jdbcType="VARCHAR"/>
+    </resultMap>
+
+	<!-- 计算酒店总数 -->
+	<select id="countHotel" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM hotel_comment
+    </select>
+
+	<!-- 计算各类别酒店总数 -->
+	<select id="countHotelByType" resultType="java.util.Map">
+        SELECT hotel_type,COUNT(*) AS hotel_num
+        FROM hotel_comment a
+        GROUP BY a.hotel_type
+    </select>
+
+    <!-- 计算各类别房间数量 -->
+    <select id="countRoomsByType" resultType="java.util.Map">
+        SELECT hotel_type,SUM(a.room_num) AS room_num
+        FROM hotel_comment a
+        GROUP BY a.hotel_type
+    </select>
+
+	<!-- 五个类别的六个维度的平均分数 -->
+	<select id="avgRateByType" resultType="java.util.Map">
+        SELECT	hotel_type AS '类型',
+			AVG( hotel_credit_rate ) AS '酒店好评率',
+			AVG( food_review_rate ) AS '食物评论率',
+			AVG( price_review_rate ) AS '价格评论率',
+			AVG( server_review_rate ) AS '服务评论率',
+			AVG( health_review_rate ) AS '卫生评论率',
+			AVG( device_review_rate ) AS '设备评论率'
+		FROM
+			hotel_comment a
+		GROUP BY
+			hotel_type
+    </select>
+
+	<!-- 五个类型的平均好评率 -->
+	<select id="avgRateByEveryType" resultType="java.util.Map">
+        SELECT hotel_type AS '类型',
+		  (
+			AVG( hotel_credit_rate ) +
+			AVG( food_review_rate ) +
+			AVG( price_review_rate ) +
+			AVG( server_review_rate ) +
+			AVG( health_review_rate ) +
+			AVG( device_review_rate ) )/6 AS 平均好评率
+		FROM hotel_comment a
+		GROUP BY hotel_type
+    </select>
+    <!-- 直接查找所有记录 -->
+    <select id="selectAllHotelComment" resultMap="HotelCommentBaseMap">
+        SELECT * FROM hotel_comment
+    </select>
+
+    <!-- 通过ID查找所有记录 -->
+    <select id="selectHzbsDataById" parameterType="java.lang.Integer" resultMap="HotelCommentBaseMap">
+        SELECT * FROM hotel_comment
+        WHERE id = #{id}
+    </select>
+
+    <!-- 插入数据到hotel_comment表中 -->
+    <insert id="insert">
+		INSERT INTO hotel_comment(
+			hotel_id,
+			hotel_type,
+			hotel_name,
+			hotel_company,
+			police,
+			address,
+			room_num,
+			bed_num,
+			create_time,
+			telephone,
+			hotel_credit_rate,
+			food_review_rate,
+			price_review_rate,
+			server_review_rate,
+			health_review_rate,
+			device_review_rate,
+			traffic_review_rate,
+			locate
+		) VALUES (
+			#{hotel_id},
+			#{hotel_type},
+			#{hotel_name},
+			#{hotel_company},
+			#{police},
+			#{address},
+			#{room_num},
+			#{bed_num},
+			#{create_time},
+			#{telephone},
+			#{hotel_credit_rate},
+			#{food_review_rate},
+			#{price_review_rate},
+			#{server_review_rate},
+			#{health_review_rate},
+			#{device_review_rate},
+			#{traffic_review_rate},
+			#{locate}
+		)
+	</insert>
+
+    <!-- 更新数据到hotel_comment表中 -->
+    <update id="update">
+		UPDATE hotel_comment SET
+			/*id = #{id},*/
+			hzbs_info = #{hzbsInfo},
+			fields1 = #{fields1},
+			fields2 = #{fields2},
+			fields3 = #{fields3}
+		WHERE id = #{id}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM hotel_comment
+		WHERE id = #{id}
+	</update>
+</mapper>

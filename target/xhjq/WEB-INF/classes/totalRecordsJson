@@ -1,0 +1,71 @@
+{
+  "totalRecords": "6",
+  "tableList": [
+    {
+      "date": "全部",
+      "name": "风景名胜区",
+      "device_name": "全部",
+      "mark": "全部",
+      "address": "全部",
+      "isWork": "全部时间",
+      "service_item": "住房公积金",
+      "service_itemX": "住房情况（无房证明）",
+      "play_count": "1"
+    },
+    {
+      "date": "全部",
+      "name": "风景名胜区",
+      "device_name": "全部",
+      "mark": "全部",
+      "address": "全部",
+      "isWork": "全部时间",
+      "service_item": "交通出行",
+      "service_itemX": "车辆违法缴款",
+      "play_count": "1"
+    },
+    {
+      "date": "全部",
+      "name": "风景名胜区",
+      "device_name": "全部",
+      "mark": "全部",
+      "address": "全部",
+      "isWork": "全部时间",
+      "service_item": "交通出行",
+      "service_itemX": "车辆违法查询",
+      "play_count": "1"
+    },
+    {
+      "date": "全部",
+      "name": "风景名胜区",
+      "device_name": "全部",
+      "mark": "全部",
+      "address": "全部",
+      "isWork": "全部时间",
+      "service_item": "社会保障",
+      "service_itemX": "社保证明",
+      "play_count": "6"
+    },
+    {
+      "date": "全部",
+      "name": "风景名胜区",
+      "device_name": "全部",
+      "mark": "全部",
+      "address": "全部",
+      "isWork": "全部时间",
+      "service_item": "社会保障",
+      "service_itemX": "医保参保信息",
+      "play_count": "1"
+    },
+    {
+      "date": "全部",
+      "name": "风景名胜区",
+      "device_name": "全部",
+      "mark": "全部",
+      "address": "全部",
+      "isWork": "全部时间",
+      "service_item": "市民卡",
+      "service_itemX": "市民卡申领",
+      "play_count": "2"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="xhfjq:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/xhfjq_war</output-path>
+    <root id="archive" name="xhfjq_war.war">
+      <element id="artifact" artifact-name="xhjq:war exploded" />
+    </root>
+  </artifact>
+</component>

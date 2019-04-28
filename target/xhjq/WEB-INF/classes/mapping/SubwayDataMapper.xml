@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hlframe.xhjq.dao.subwayData.SubwayDataDao">
+
+    <resultMap id="SubwayDataBaseMap" type="com.hlframe.xhjq.domain.subwayData.SubwayData">
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="start_time" property="start_time" jdbcType="TIMESTAMP"/>
+        <result column="exit_flow" property="exit_flow" jdbcType="INTEGER"/>
+        <result column="end_time" property="end_time" jdbcType="TIMESTAMP"/>
+        <result column="stat_id" property="stat_id" jdbcType="VARCHAR"/>
+        <result column="business_day" property="business_day" jdbcType="TIMESTAMP"/>
+        <result column="entry_flow" property="entry_flow" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+	<!-- 查询实时数据 -->
+	<select id="selectRealTimeSubwayDate" resultType="java.util.Map">
+
+	</select>
+
+    <!-- 插入数据到subway_data表中 -->
+    <insert id="insert">
+		INSERT INTO subway_data(
+			name,
+			start_time,
+			exit_flow,
+			end_time,
+			stat_id,
+			business_day,
+			entry_flow
+		) VALUES (
+			#{name},
+			#{start_time},
+			#{exit_flow},
+			#{end_time},
+			#{stat_id},
+			#{business_day},
+			#{entry_flow}
+		)
+	</insert>
+
+	<select id="selectAll" resultMap="SubwayDataBaseMap">
+		SELECT * FROM subway_data
+	</select>
+
+	<select id="selectByDate" parameterType="java.lang.String" resultMap="SubwayDataBaseMap">
+		SELECT * FROM subway_data WHERE business_day = #{date}
+	</select>
+    <!-- 更新数据到subway_data表中 -->
+    <update id="update">
+		UPDATE subway_data SET
+			/*serial_no = #{serial_no},*/
+			name = #{name},
+			start_time = #{start_time},
+			exit_flow = #{exit_flow},
+			end_time = #{end_time},
+			business_day = #{business_day},
+			entry_flow = #{entry_flow},
+		WHERE stat_id = #{stat_id}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM subway_data
+		WHERE stat_id = #{stat_id}
+	</update>
+</mapper>

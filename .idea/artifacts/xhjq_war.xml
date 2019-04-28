@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="xhjq:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>xhjq</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="xhjq.war">
+      <element id="artifact" artifact-name="xhjq:war exploded" />
+    </root>
+  </artifact>
+</component>
