@@ -289,6 +289,36 @@ public class NodeController {
         }
     }
 
+    // 传月份参数URL 全设备节点获取（Windows，//Android，iOS，Mac）
+    @RequestMapping(value = "guanzhuWeidianZahuopu")
+    public void getNodeByMonth(HttpServletResponse response,String month) throws IOException {
+        String fileName = "afterTwentyOneNode.txt";
+        OutputStream os = null;
+        try {
+            response.reset();
+            response.setContentType("application/octet-stream; charset=utf-8");
+            response.setHeader("Content-Disposition", "attachment; filename=" + new String(fileName.getBytes(),"ISO8859-1"));
+            // 打印时间
+            getDatetime();
+            byte[] bytes = EncodeUtils.EncodeByBase64(nodeService.getMonthNode(Integer.parseInt(month))).getBytes("GBK");
+            os = response.getOutputStream();
+            // 将字节流传入到响应流里,响应到浏览器
+            os.write(bytes);
+            os.close();
+        } catch (Exception ex) {
+            log.error("导出失败:", ex);
+            throw new RuntimeException("导出失败");
+        }finally {
+            try {
+                if (null != os) {
+                    os.close();
+                }
+            } catch (IOException ioEx) {
+                log.error("导出失败:", ioEx);
+            }
+        }
+    }
+
     // 打印日志时间
     public void getDatetime(){
         System.out.println("——————————————————————————————— LogDateTime ： " + DateUtils.getCurrentDate() + " ———————————————————————————————");
