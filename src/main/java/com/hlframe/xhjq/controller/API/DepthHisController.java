@@ -169,7 +169,7 @@ public class DepthHisController {
                 .filter(b->FilterTools.isMatch(b.getTimeStampStr(), secondFrequency))
                 .filter(FilterTools.distinctByKey(DepthHis::getTimeStampStr))
                 .collect(Collectors.toList());
-        dataList.forEach(System.out::println);
+//        dataList.forEach(System.out::println);// 打印List对象
             return dataList;
 //        data.put("depthHis",dataList);
     }
