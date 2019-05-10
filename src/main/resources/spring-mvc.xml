@@ -12,7 +12,14 @@
 
     <!-- 自动扫描  @Controller-->
     <mvc:annotation-driven/>
+    <!-- 注解方式：自动扫描该包 -->
+    <context:component-scan base-package="com.hlframe.xhjq.config" />
     <context:component-scan base-package="com.hlframe.xhjq.controller"/>
+
+
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+
     <!--向容器自动注入配置-->
     <!--<context:annotation-config />&lt;!&ndash; 后期加入 &ndash;&gt;-->
     <!--<mvc:default-servlet-handler/>-->

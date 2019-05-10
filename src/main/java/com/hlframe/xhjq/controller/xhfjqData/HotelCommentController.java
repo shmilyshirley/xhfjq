@@ -1,8 +1,13 @@
 package com.hlframe.xhjq.controller.xhfjqData;
 
 import com.hlframe.xhjq.service.HotelCommentService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -17,6 +22,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping(value = "hotelComment")
+@Api(tags="HotelCommentController",description="user的控制层")
 public class HotelCommentController {
     @Autowired
     private HotelCommentService hotelCommentService;
@@ -25,7 +31,12 @@ public class HotelCommentController {
      * 计算酒店总数
      * @return
      */
-    @RequestMapping(value = "countHotel")
+    @ApiOperation(value="注册", notes="注册用户",tags = "注册用户",httpMethod = "GET")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "成功", response = Void.class),
+            @ApiResponse(code = 400, message = "参数错误", response = Void.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = Void.class)
+    })
+    @RequestMapping(value = "countHotel",method = RequestMethod.GET)
     public Map countHotel (){
         Integer integer = hotelCommentService.countHotel();
         Map map = new HashMap<String,String>();
