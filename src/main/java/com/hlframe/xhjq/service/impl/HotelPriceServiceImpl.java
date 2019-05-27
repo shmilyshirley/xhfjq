@@ -33,4 +33,9 @@ public class HotelPriceServiceImpl implements HotelPriceService {
         return hotelPriceDao.countLowestPriceByType();
     }
 
+    @Override
+    public List test() {
+        return hotelPriceDao.test();
+    }
+
 }

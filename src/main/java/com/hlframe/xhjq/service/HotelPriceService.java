@@ -17,4 +17,6 @@ public interface HotelPriceService {
     // 计算酒店总数
     List countLowestPriceByType();
 
+    List test();
+
 }
