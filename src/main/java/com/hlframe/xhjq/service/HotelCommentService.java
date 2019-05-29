@@ -1,6 +1,7 @@
 package com.hlframe.xhjq.service;
 
 import com.hlframe.xhjq.domain.xhfjqData.HotelComment;
+import com.hlframe.xhjq.domain.xhfjqData.HotelPrice;
 
 import java.util.List;
 import java.util.Map;
@@ -29,4 +30,7 @@ public interface HotelCommentService {
 
     // 五个类型的平均好评率
     List<Map<String,String>> avgRateByEveryType();
+
+    // 各类别酒店的最低房价
+    List<HotelPrice> lowestHotelPrice();
 }

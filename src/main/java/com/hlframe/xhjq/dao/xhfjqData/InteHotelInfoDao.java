@@ -1,5 +1,9 @@
 package com.hlframe.xhjq.dao.xhfjqData;
 
+import com.hlframe.xhjq.domain.xhfjqData.Vo;
+
+import java.util.List;
+
 /**
  * @company:华量软件
  * @author:Fan Junhan
@@ -8,4 +12,6 @@ package com.hlframe.xhjq.dao.xhfjqData;
  */
 public interface InteHotelInfoDao {
     Integer countCustomer();
+
+    List<Vo> occupancyRate();
 }

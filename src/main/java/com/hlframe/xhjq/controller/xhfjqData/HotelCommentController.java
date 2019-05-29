@@ -1,5 +1,6 @@
 package com.hlframe.xhjq.controller.xhfjqData;
 
+import com.hlframe.xhjq.domain.xhfjqData.HotelPrice;
 import com.hlframe.xhjq.service.HotelCommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,5 +80,26 @@ public class HotelCommentController {
     @RequestMapping(value = "avgRateByEveryType")
     public List avgRateByEveryType(){
         return hotelCommentService.avgRateByEveryType();
+    }
+
+    /**
+     * 各类别酒店的最低房价
+     * @return
+     */
+    @RequestMapping(value = "lowestHotelPrice")
+    public List lowestHotelPrice(){
+        Map map = new HashMap<String,String>();
+        List<HotelPrice> list = hotelCommentService.lowestHotelPrice();
+        List<Map<String,String>> resultList = new ArrayList<>();
+        for (HotelPrice hotelPrice : list){
+            Map map2 = new HashMap<String,String>();
+            map2.put("hotel_type",hotelPrice.getHotel_type());
+            map2.put("lowPrice",hotelPrice.getDec());
+            List list2 = new ArrayList<>();
+            list2.add(hotelPrice.getDec() != null ? hotelPrice.getDec() : 0);
+            resultList.add(map2);
+        }
+
+        return resultList;
     }
 }

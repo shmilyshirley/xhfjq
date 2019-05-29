@@ -24,7 +24,7 @@
     </resultMap>
 
 	<!-- 计算酒5个类别酒店最低价（1-12月） -->
-	<select id="countLowestPriceByType" resultType="java.util.TreeMap">
+	<select id="countLowestPriceByType" resultType="com.hlframe.xhjq.domain.xhfjqData.HotelPrice">
         SELECT
 			hotel_type,MIN(jan) as jan,MIN(feb) as feb,MIN(mar) as mar,MIN(apr) as apr,MIN(may) as may,MIN(jun) as jun,
 			MIN(jul) as jul,MIN(aug) as aug,MIN(sept) as sept,MIN(oct) as oct,MIN(nov) as nov,MIN(`dec`) as `dec`

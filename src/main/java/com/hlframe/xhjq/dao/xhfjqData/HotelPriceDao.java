@@ -1,6 +1,7 @@
 package com.hlframe.xhjq.dao.xhfjqData;
 
 import com.hlframe.xhjq.domain.xhfjqData.ChinaHotelInfo12;
+import com.hlframe.xhjq.domain.xhfjqData.HotelPrice;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface HotelPriceDao {
     Integer insert(ChinaHotelInfo12 chinaHotelInfo12);
 
     // 计算酒店总数
-    List countLowestPriceByType();
+    List<HotelPrice> countLowestPriceByType();
 
     List test();
 

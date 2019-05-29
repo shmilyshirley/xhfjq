@@ -124,6 +124,30 @@
 		)
 	</insert>
 
+	<!-- 各类别酒店的最低房价 -->
+	<select id="lowestHotelPrice" resultType="com.hlframe.xhjq.domain.xhfjqData.HotelPrice">
+		SELECT
+			hotel_type,
+			least (
+			MIN( jan ),
+			MIN( feb ),
+			MIN( mar ),
+			MIN( apr ),
+			MIN( may ),
+			MIN( jun ),
+			MIN( jul ),
+			MIN( aug ),
+			MIN( sept ),
+			MIN( oct ),
+			MIN( nov ),
+			MIN( `dec` )
+			) as `dec`
+		FROM
+			hotel_price
+		GROUP BY
+			hotel_type
+	</select>
+
     <!-- 更新数据到hotel_comment表中 -->
     <update id="update">
 		UPDATE hotel_comment SET

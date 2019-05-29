@@ -7,4 +7,31 @@
         SELECT SUM(peo_num) AS '客流量' FROM inte_hotel_info
     </select>
 
+    <select id="occupancyRate" resultType="com.hlframe.xhjq.domain.xhfjqData.Vo">
+        /*SELECT sum(a.peo_num) as peo_num,MONTH(a.statistical_time) as month FROM (SELECT * from province_hotel_info where  DATE_FORMAT(statistical_time,'%Y-%m') like '2018%'
+        ) a GROUP BY MONTH(a.statistical_time)*/
+
+        /*
+        原始省份入住率
+        select
+	        sum(peo_num) as peo_num,
+	        month(statistical_time) as `month`
+        from
+	        province_hotel_info
+        where
+	        date_format( statistical_time, '%Y-%m' ) > date_format( DATE_SUB( DATE_SUB( curdate( ), interval 1 month ), interval 12 month ), '%Y-%m' )
+        group by
+	        month(statistical_time)*/
+
+	    SELECT
+	      sum( peo_num ) AS peo_num,
+	      MONTH ( statistical_time ) AS `month`
+        FROM
+	      china_inte_all
+        WHERE
+	      date_format( statistical_time, '%Y-%m' ) > date_format( DATE_SUB( DATE_SUB( curdate( ), INTERVAL 1 MONTH ), INTERVAL 12 MONTH ), '%Y-%m' )
+        GROUP BY
+	      MONTH ( statistical_time )
+	    ORDER BY statistical_time
+    </select>
 </mapper>

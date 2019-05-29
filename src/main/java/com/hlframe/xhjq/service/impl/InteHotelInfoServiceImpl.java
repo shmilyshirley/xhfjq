@@ -5,6 +5,8 @@ import com.hlframe.xhjq.service.InteHotelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @company:华量软件
  * @author:Fan Junhan
@@ -19,5 +21,10 @@ public class InteHotelInfoServiceImpl implements InteHotelInfoService {
     @Override
     public Integer countCustomer() {
         return inteHotelInfoDao.countCustomer();
+    }
+
+    @Override
+    public List occupancyRate() {
+        return inteHotelInfoDao.occupancyRate();
     }
 }

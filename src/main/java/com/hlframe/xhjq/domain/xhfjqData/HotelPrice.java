@@ -9,7 +9,7 @@ package com.hlframe.xhjq.domain.xhfjqData;
 public class HotelPrice {
     private String hotelName;
     private String hotelId;
-    private String hotelType;
+    private String hotel_type;
     private Integer jan;
     private Integer feb;
     private Integer mar;
@@ -42,12 +42,12 @@ public class HotelPrice {
     }
 
 
-    public String getHotelType() {
-        return hotelType;
+    public String getHotel_type() {
+        return hotel_type;
     }
 
-    public void setHotelType(String hotelType) {
-        this.hotelType = hotelType;
+    public void setHotel_type(String hotel_type) {
+        this.hotel_type = hotel_type;
     }
 
 

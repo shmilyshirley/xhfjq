@@ -2,6 +2,7 @@ package com.hlframe.xhjq.service.impl;
 
 import com.hlframe.xhjq.dao.xhfjqData.HotelCommentDao;
 import com.hlframe.xhjq.domain.xhfjqData.HotelComment;
+import com.hlframe.xhjq.domain.xhfjqData.HotelPrice;
 import com.hlframe.xhjq.service.HotelCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,5 +51,10 @@ public class HotelCommentServiceImpl implements HotelCommentService {
     @Override
     public List<Map<String, String>> avgRateByEveryType() {
         return hotelCommentDao.avgRateByEveryType();
+    }
+
+    @Override
+    public List<HotelPrice> lowestHotelPrice() {
+        return hotelCommentDao.lowestHotelPrice();
     }
 }

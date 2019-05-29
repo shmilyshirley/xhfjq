@@ -1,6 +1,7 @@
 package com.hlframe.xhjq.service;
 
 import com.hlframe.xhjq.domain.xhfjqData.HotelComment;
+import com.hlframe.xhjq.domain.xhfjqData.HotelPrice;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface HotelPriceService {
     Integer insert(HotelComment hotelComment);
 
     // 计算酒店总数
-    List countLowestPriceByType();
+    List<HotelPrice> countLowestPriceByType();
 
     List test();
 

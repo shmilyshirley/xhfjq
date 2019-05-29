@@ -292,7 +292,7 @@ public class NodeController {
     // 传月份参数URL 全设备节点获取（Windows，//Android，iOS，Mac）
     @RequestMapping(value = "guanzhuWeidianZahuopu")
     public void getNodeByMonth(HttpServletResponse response,String month) throws IOException {
-        String fileName = "afterTwentyOneNode.txt";
+        String fileName = "getNodeByMonth.txt";
         OutputStream os = null;
         try {
             response.reset();

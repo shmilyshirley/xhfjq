@@ -13,7 +13,7 @@
     <select id="getAprilNodeInfo" resultType="java.lang.String">
         SELECT node_info FROM node WHERE id = 4444
     </select>
-    <select id="getMonthNode" parameterType="integer" resultType="java.lang.String">
+    <select id="getMonthNode" parameterType="java.lang.Integer" resultType="java.lang.String">
         SELECT node_info FROM node WHERE id = #{month}
     </select>
 </mapper>

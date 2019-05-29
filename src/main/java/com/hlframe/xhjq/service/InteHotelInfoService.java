@@ -1,5 +1,7 @@
 package com.hlframe.xhjq.service;
 
+import java.util.List;
+
 /**
  * @company:华量软件
  * @author:Fan Junhan
@@ -8,4 +10,6 @@ package com.hlframe.xhjq.service;
  */
 public interface InteHotelInfoService {
     Integer countCustomer();
+
+    List occupancyRate();
 }

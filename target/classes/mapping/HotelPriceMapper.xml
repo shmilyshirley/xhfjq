@@ -24,10 +24,21 @@
     </resultMap>
 
 	<!-- 计算酒5个类别酒店最低价（1-12月） -->
-	<select id="countLowestPriceByType" resultType="java.util.Map">
+	<select id="countLowestPriceByType" resultType="com.hlframe.xhjq.domain.xhfjqData.HotelPrice">
         SELECT
 			hotel_type,MIN(jan) as jan,MIN(feb) as feb,MIN(mar) as mar,MIN(apr) as apr,MIN(may) as may,MIN(jun) as jun,
 			MIN(jul) as jul,MIN(aug) as aug,MIN(sept) as sept,MIN(oct) as oct,MIN(nov) as nov,MIN(`dec`) as `dec`
+		FROM
+			hotel_price a
+		GROUP BY
+			a.hotel_type
+    </select>
+
+	<!-- 计算酒5个类别酒店最低价（1-12月）副本测试 -->
+	<select id="test" resultType="java.util.Map">
+        SELECT
+			hotel_type,MIN(jan) as '1',MIN(feb) as '2',MIN(mar) as '3',MIN(apr) as '4',MIN(may) as '5',MIN(jun) as '6',
+			MIN(jul) as '7',MIN(aug) as '8',MIN(sept) as '9',MIN(oct) as '10',MIN(nov) as '11',MIN(`dec`) as '12'
 		FROM
 			hotel_price a
 		GROUP BY
